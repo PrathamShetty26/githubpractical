@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>AJAXDEMO</h1>
+    <button onclick="f1()">press to get gf</button>
+    <div id="demo">
+
+    </div>
+</body>
+<script>
+function f1(){
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onload=function(){
+        //u can also use onreadystatechange but instead of loading after 4th state it'll load the function everytime the stages from 0 to 1 ot 1 to 2 or 2 to 3 etc.
+        //on loading the xhttp the following command gets executed
+        if(this.readyState == 4 && this.status == 200){
+            //readtState=4 is used because te 4th is the last stage of ready state change processing
+            //this.status=200 means the response is satisfactory
+            document.getElementById('demo').innerHTML = this.responseText
+            //getElementById means getting the element with id name as(demo) whose inner html(data.txt) whose response.text is the thing u get after pressing button
+        }
+    }
+
+    xhttp.open("GET","data.txt");
+    // GET=to get data from the server and open makes a request
+    xhttp.send();
+    //jo GET kiya woh send karega
+
+}
+
+</script>
+</html>
